@@ -1,0 +1,28 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    flex-direction: column;
+}
+
+button {
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    
+    font-weight: 600;
+    color: black;
+    background-color: #e0efff;
+  
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+  }
+
+textarea {
+    padding: 12px 24px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
