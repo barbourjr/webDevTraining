@@ -1,13 +1,13 @@
 const mybutton = document.getElementById('dadJokeButton');
 const myTextArea = document.getElementById('jokeArea');
 const url = 'https://icanhazdadjoke.com/'
-async function getJoke(url = '', data = {}) {
+async function getJoke() {
   //const userName = 'barbourjr'
   //const repo = 'webDevTraining'
   let myJSON;
   const myHeaders = new Headers();
   myHeaders.append('Accept', 'application/json');
-
+  
   try {
     const response = await fetch(url, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -24,7 +24,8 @@ async function getJoke(url = '', data = {}) {
       console.log('There was an error', error);
     }
   } if (myJSON) {
-    console.log('Use the JSON here!', JSON.stringify(myJSON));
+    myTextArea.innerHTML = JSON.stringify(myJSON.joke)
+    mybutton.innerHTML = 'Get Another Dad Joke'
   }
 }
 
