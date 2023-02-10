@@ -1,5 +1,6 @@
 const mybutton = document.getElementById('dadJokeButton');
 const myTextArea = document.getElementById('jokeArea');
+const myMemeImage = document.getElementById('dadJokeMeme');
 const url = 'https://icanhazdadjoke.com/'
 async function getJoke() {
   //const userName = 'barbourjr'
@@ -26,6 +27,7 @@ async function getJoke() {
   } if (myJSON) {
     myTextArea.innerHTML = JSON.stringify(myJSON.joke)
     mybutton.innerHTML = 'Get Another Dad Joke'
+    myMemeImage.hidden = false
   }
 }
 
