@@ -2,17 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>My Dad Joke </title>
+    <title>My Dad Joke Generator</title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <h3>Get your Dad Joke by clicking the button below.</h3>
+    <div class="wrapper">
+        <form id="jokeForm">
+          <label for="limit">Quantity (between 1 and 4):</label>
+          <input type="number" id="limit" name="limit" min="1" max="4" default="1">
 
-    <button id="dadJokeButton" type="submit" onclick="getJoke()">Get Dad Joke</button>
-    
-    <textarea id="jokeArea" placeholder="Dad Joke text goes here."></textarea>
-    <img src="images/dadJokeMeme.png" id="dadJokeMeme" hidden="true" alt="Funny dad joke meme featuring Leonardo DiCaprio">
+          <label for="jokeSearch"> Joke Search Term: </label><br>
+          <input type="search" id="jokeSearch" name="jokeSearch" default="" placeholder="Enter search term here. "><br>
+          
+          <button id="submitButton" type="submit" onclick="getJokes()">Get Dad Joke(s)</button>
+          <button id="resetButton" type="reset">Reset</button>
+        </form>
+        <main>
+          <div class="mainContainer">
+            <textarea id="jokeArea" placeholder="Dad Joke text goes here."></textarea>
+            <img src="images/dadJokeMeme.png" id="dadJokeMeme" hidden="true" alt="Funny dad joke meme featuring Leonardo DiCaprio">
+          </div>
+        </main>
+    </div>
   </body>
   <script src="main.js"></script>
 </html>

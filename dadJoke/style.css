@@ -1,10 +1,16 @@
-body{
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+main {
+    overflow-y: auto;
+}
+form {
+    flex: 1 0 10%;
+}
+.wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(209, 236, 238);
-    flex-direction: column;
-    padding: 6px
+    height: 100%;
 }
 
 button {
@@ -16,21 +22,19 @@ button {
     color: black;
     background-color: #e0efff;
   
-    margin: 0 auto;
-    display: block;
+    display: flex;
     cursor: pointer;
   }
 
-textarea {
+.jokeArea {
     width: 40%;
     padding: 20px 20px;
-    margin: 20px auto;
-    display: block;
+    display: flex;
     cursor: pointer;
 }
 img {
     width: 50%;
     border-radius: 12px;
     height: auto;
-    object-fit: cover;
+    object-fit: fill;
 }
