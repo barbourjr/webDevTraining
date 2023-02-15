@@ -9,29 +9,36 @@ async function getJokes() {
   //const userName = 'barbourjr'
   //const repo = 'webDevTraining'
   let url = new URL('https://icanhazdadjoke.com/search')
-  let term = document.getElementById('jokeSearch').innerText;
-  let limit = document.getElementById('limit').innerText;
-  let myJSON;
+  let term = document.getElementById('search_term')
+  let limit = document.getElementById('limit').value;
   let myHeaders = new Headers();
   //const formData = new FormData();
-  if (term !== "") url.searchParams.append('term', term);
+  if (term !== "") url.searchParams.append('term', term.value);
   if (limit !=="") url.searchParams.append('limit', limit); 
   myHeaders.set('Accept', 'application/json');
-  //myHeaders.set("Access-Control-Allow-Origin", 'https://icanhazdadjoke.com');
-  console.log("URL: ", url)
   const request = new Request(url, {
     method: 'GET', 
     headers: myHeaders,
     mode: 'cors'
   })
-  fetch(request)
+   fetch(request)
   .then(async (response) => {
     if (response.ok) {
+      let jokeStringArray = [];
       const data = await response.json();
-      console.debug(data);
-      myTextArea.innerHTML = JSON.stringify(data.results)
-      mybutton.innerHTML = 'Get Another Dad Joke'
-      myMemeImage.hidden = false
+      data.results.forEach((entry) => {
+        Object.entries(entry).forEach(([key, value]) => {
+          // key: the name of the object key
+          if (key === 'joke'){
+            jokeStringArray.push(value)
+          }
+        })
+      })
+      var jokesString = jokeStringArray.toString().split()
+      var finalJokeString = jokesString.join('<br>')
+      myTextArea.innerHTML = finalJokeString
+      mybutton.innerHTML = 'Get Another Dad Joke';
+      myMemeImage.hidden = false;
     } else {
       throw new Error('Something went wrong on API server!');
     }
@@ -39,6 +46,7 @@ async function getJokes() {
     console.error(error);
   });
 }
+
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);

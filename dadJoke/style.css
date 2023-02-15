@@ -26,8 +26,8 @@ button {
     cursor: pointer;
   }
 
-.jokeArea {
-    width: 40%;
+textarea {
+    width: 70%;
     padding: 20px 20px;
     display: flex;
     cursor: pointer;
