@@ -25,10 +25,10 @@ async function getJokes() {
     mode: 'cors'
   })
   fetch(request)
-  .then((response) => {
-    if (response.status === 200) {
-      console.debug(response);
-      const data = response.json
+  .then(async (response) => {
+    if (response.ok) {
+      const data = await response.json();
+      console.debug(data);
       myTextArea.innerHTML = JSON.stringify(data.results)
       mybutton.innerHTML = 'Get Another Dad Joke'
       myMemeImage.hidden = false
