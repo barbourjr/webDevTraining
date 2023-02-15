@@ -1,38 +1,44 @@
 //import validator from 'validator';
 
-const mybutton = document.getElementById('dadJokeButton');
+const mybutton = document.getElementById('submitButton');
 const myTextArea = document.getElementById('jokeArea');
 const myMemeImage = document.getElementById('dadJokeMeme');
-let url = new URL('https://icanhazdadjoke.com/search')
-var jokeSearch = document.getElementById('jokeSearch').innerText;
-var limit = document.getElementById('limit').innerText;
+
 var maxPage;
-async function getJokes(limit = 1,term='') {
+async function getJokes() {
   //const userName = 'barbourjr'
   //const repo = 'webDevTraining'
+  let url = new URL('https://icanhazdadjoke.com/search')
+  let term = document.getElementById('jokeSearch').innerText;
+  let limit = document.getElementById('limit').innerText;
   let myJSON;
-  const myHeaders = new Headers();
+  let myHeaders = new Headers();
   //const formData = new FormData();
-  url.searchParams.set('limit', limit);
-  url.searchParams.set('term', jokeSearch);
-  myHeaders.append('Accept', 'application/json');
+  if (term !== "") url.searchParams.append('term', term);
+  if (limit !=="") url.searchParams.append('limit', limit); 
+  myHeaders.set('Accept', 'application/json');
+  //myHeaders.set("Access-Control-Allow-Origin", 'https://icanhazdadjoke.com');
   console.log("URL: ", url)
-  let response = await fetch(url, {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      headers: myHeaders,
-      mode: 'cors',
-      cache: 'default'
-    }).then((response) => {
-      return response.json();
-    }).then((data) => {
+  const request = new Request(url, {
+    method: 'GET', 
+    headers: myHeaders,
+    mode: 'cors'
+  })
+  fetch(request)
+  .then((response) => {
+    if (response.status === 200) {
+      console.debug(response);
+      const data = response.json
       myTextArea.innerHTML = JSON.stringify(data.results)
       mybutton.innerHTML = 'Get Another Dad Joke'
       myMemeImage.hidden = false
-    }).catch(function(error) {
-      console.log("Error: ", error)
-    })
+    } else {
+      throw new Error('Something went wrong on API server!');
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
 }
-
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
