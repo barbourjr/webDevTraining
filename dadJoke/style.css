@@ -4,9 +4,11 @@ body {
 }
 main {
     overflow-y: auto;
+    width: 75vw;
 }
 form {
     flex: 1 0 10%;
+    width: 25vw;
 }
 .wrapper {
     display: flex;
@@ -17,24 +19,19 @@ button {
     border: 10px;
     padding: 12px 12px;
     border-radius: 30px;
-    
     font-weight: 500;
     color: black;
     background-color: #e0efff;
-  
     display: flex;
     cursor: pointer;
   }
 
-textarea {
-    width: 70%;
-    padding: 20px 20px;
-    display: flex;
-    cursor: pointer;
-}
 img {
-    width: 50%;
-    border-radius: 12px;
-    height: auto;
+    padding: 0;
+    display: flex;
+    margin: 0 auto;
     object-fit: fill;
+    max-height: 80vh;
+    max-width: 80vw;
 }
+

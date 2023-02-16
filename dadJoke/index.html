@@ -10,9 +10,11 @@
   <body>
     <div class="wrapper">
         <form id="jokeForm" onsubmit="return false">
-          <label for="limit">Quantity (between 1 and 4):</label>
+          <h2>Dad Joke Generator</h2>
+          <label for="limit">Quantity (between 1 and 4):</label><br>
+        
           <input type="number" id="limit" name="limit" min="1" max="4" default="1"><br>
-
+          <br>
           <label for="search_term"> Joke Search Term: </label><br>
           <input type="search" id="search_term" name="search_term" defaultValue="" placeholder="Enter search term here. "><br>
           
@@ -21,8 +23,9 @@
         </form>
         <main>
           <div class="mainContainer">
-            <textarea id="jokeArea" placeholder="Dad Joke text goes here."></textarea>
-            <img src="images/dadJokeMeme.png" id="dadJokeMeme" hidden="true" alt="Funny dad joke meme featuring Leonardo DiCaprio">
+            <h3> Dad Jokes</h3>
+            <ol type="1" id="jokeList"></ol>
+            <img src="images/dadJokeMeme.png" id="dadJokeMeme" hidden="true" class="cover" alt="Funny dad joke meme featuring Leonardo DiCaprio">
           </div>
         </main>
     </div>

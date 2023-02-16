@@ -1,16 +1,15 @@
 //import validator from 'validator';
 
 const mybutton = document.getElementById('submitButton');
-const myTextArea = document.getElementById('jokeArea');
+const myJokeList = document.getElementById('jokeList');
 const myMemeImage = document.getElementById('dadJokeMeme');
-
+let term = document.getElementById('search_term')
+let limit = document.getElementById('limit').value;
 var maxPage;
 async function getJokes() {
-  //const userName = 'barbourjr'
-  //const repo = 'webDevTraining'
+
   let url = new URL('https://icanhazdadjoke.com/search')
-  let term = document.getElementById('search_term')
-  let limit = document.getElementById('limit').value;
+  myJokeList.innerText=""
   let myHeaders = new Headers();
   //const formData = new FormData();
   if (term !== "") url.searchParams.append('term', term.value);
@@ -26,17 +25,27 @@ async function getJokes() {
     if (response.ok) {
       let jokeStringArray = [];
       const data = await response.json();
+      console.log("Data: ", data)
       data.results.forEach((entry) => {
         Object.entries(entry).forEach(([key, value]) => {
           // key: the name of the object key
           if (key === 'joke'){
+            let li = document.createElement("li");
+            li.textContent = value
             jokeStringArray.push(value)
           }
         })
       })
-      var jokesString = jokeStringArray.toString().split()
-      var finalJokeString = jokesString.join('<br>')
-      myTextArea.innerHTML = finalJokeString
+
+      jokeStringArray.forEach((entry) => {
+        //console.log("Entry: ", entry)
+        let li = document.createElement("li");
+        li.textContent = entry
+        myJokeList.appendChild(li);
+      }
+      
+      )
+      handleNotEnoughJokes(data.total_jokes);
       mybutton.innerHTML = 'Get Another Dad Joke';
       myMemeImage.hidden = false;
     } else {
@@ -47,11 +56,18 @@ async function getJokes() {
   });
 }
 
-
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min); 
+}
+
+function handleNotEnoughJokes(total_jokes) {
+  if (limit > total_jokes && term) {
+    let li = document.createElement("li");
+    li.textContent = "Sorry, we only have " + total_jokes + " jokes about " + term.value +"(s)."
+    myJokeList.appendChild(li);
+  } 
 }
 
 /**
