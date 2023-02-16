@@ -4,7 +4,7 @@ const mybutton = document.getElementById('submitButton');
 const myJokeList = document.getElementById('jokeList');
 const myMemeImage = document.getElementById('dadJokeMeme');
 let term = document.getElementById('search_term')
-let limit = document.getElementById('limit').value;
+let limit = document.getElementById('limit');
 var maxPage;
 async function getJokes() {
 
@@ -13,7 +13,7 @@ async function getJokes() {
   let myHeaders = new Headers();
   //const formData = new FormData();
   if (term !== "") url.searchParams.append('term', term.value);
-  if (limit !=="") url.searchParams.append('limit', limit); 
+  if (limit !=="") url.searchParams.append('limit', limit.value); 
   myHeaders.set('Accept', 'application/json');
   const request = new Request(url, {
     method: 'GET', 
@@ -45,7 +45,7 @@ async function getJokes() {
       }
       
       )
-      handleNotEnoughJokes(data.total_jokes);
+      await handleNotEnoughJokes(data.total_jokes);
       mybutton.innerHTML = 'Get Another Dad Joke';
       myMemeImage.hidden = false;
     } else {
@@ -63,7 +63,7 @@ function getRandomIntInclusive(min, max) {
 }
 
 function handleNotEnoughJokes(total_jokes) {
-  if (limit > total_jokes && term) {
+  if (limit.value > total_jokes && term.value) {
     let li = document.createElement("li");
     li.textContent = "Sorry, we only have " + total_jokes + " jokes about " + term.value +"(s)."
     myJokeList.appendChild(li);
