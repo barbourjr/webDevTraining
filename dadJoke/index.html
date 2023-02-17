@@ -8,26 +8,28 @@
     <link href="style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div class="wrapper">
+    <h1>Dad Joke Generator</h1>
+    <div class="container">
         <form id="jokeForm" onsubmit="return false">
-          <h2>Dad Joke Generator</h2>
+          <h3>Menu</h3>
           <label for="limit">Quantity (between 1 and 4):</label><br>
         
           <input type="number" id="limit" name="limit" min="1" max="4" default="1"><br>
           <br>
           <label for="search_term"> Joke Search Term: </label><br>
-          <input type="search" id="search_term" name="search_term" defaultValue="" placeholder="Enter search term here. "><br>
+          <input type="search" id="search_term" name="search_term" defaultValue="" placeholder="Enter search term here. "> <br>
           
           <button id="submitButton" type="submit" onclick="getJokes()">Get Dad Joke(s)</button>
-          <button id="resetButton" type="reset">Reset</button>
+          <button id="resetButton" type="reset" onclick="clearForm(this.form)">Reset</button>
         </form>
-        <main>
-          <div class="mainContainer">
-            <h3> Dad Jokes</h3>
-            <ol type="1" id="jokeList"></ol>
-            <img src="images/dadJokeMeme.png" id="dadJokeMeme" hidden="true" class="cover" alt="Funny dad joke meme featuring Leonardo DiCaprio">
-          </div>
-        </main>
+        <div class="jokeContainer">
+          <h3> Dad Jokes</h3>
+          <ol type="1" id="jokeList"></ol>
+        </div>
+        <div class="imgContainer">
+          <h3>Respect the Architects</h3>
+          <img src="images/dadJokeMeme.png" id="dadJokeMeme" hidden="true" class="cover" alt="Funny dad joke meme featuring Leonardo DiCaprio">
+        </div>
     </div>
   </body>
   <script src="main.js"></script>

@@ -1,19 +1,19 @@
 //import validator from 'validator';
 
-const mybutton = document.getElementById('submitButton');
+const mySubmitButton = document.getElementById('submitButton');
 const myJokeList = document.getElementById('jokeList');
 const myMemeImage = document.getElementById('dadJokeMeme');
 let term = document.getElementById('search_term')
 let limit = document.getElementById('limit');
-var maxPage;
+
 async function getJokes() {
 
   let url = new URL('https://icanhazdadjoke.com/search')
-  myJokeList.innerText=""
+  myJokeList.innerText = ""
   let myHeaders = new Headers();
-  //const formData = new FormData();
+
   if (term !== "") url.searchParams.append('term', term.value);
-  if (limit !=="") url.searchParams.append('limit', limit.value); 
+  if (limit !=="") url.searchParams.append('limit', limit.value ? limit.value : 1);
   myHeaders.set('Accept', 'application/json');
   const request = new Request(url, {
     method: 'GET', 
@@ -25,10 +25,14 @@ async function getJokes() {
     if (response.ok) {
       let jokeStringArray = [];
       const data = await response.json();
-      console.log("Data: ", data)
+
+      if (!data.results.length) {
+        myJokeList.innerText = "No jokes found.";
+        return;
+      }
       data.results.forEach((entry) => {
         Object.entries(entry).forEach(([key, value]) => {
-          // key: the name of the object key
+
           if (key === 'joke'){
             let li = document.createElement("li");
             li.textContent = value
@@ -38,16 +42,14 @@ async function getJokes() {
       })
 
       jokeStringArray.forEach((entry) => {
-        //console.log("Entry: ", entry)
         let li = document.createElement("li");
         li.textContent = entry
         myJokeList.appendChild(li);
-      }
+      })
       
-      )
-      await handleNotEnoughJokes(data.total_jokes);
-      mybutton.innerHTML = 'Get Another Dad Joke';
-      myMemeImage.hidden = false;
+      handleNotEnoughJokes(data.total_jokes);
+      mySubmitButton.innerHTML = 'Get Another Dad Joke';
+
     } else {
       throw new Error('Something went wrong on API server!');
     }
@@ -70,6 +72,11 @@ function handleNotEnoughJokes(total_jokes) {
   } 
 }
 
+function clearForm(form) {
+  form.reset();
+  myJokeList.innerText = ""
+  mySubmitButton.innerText = "Get Dad Joke(s)" 
+}
 /**
  * @param {string} text
  * @return {string}
