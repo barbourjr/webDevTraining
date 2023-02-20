@@ -3,6 +3,7 @@
 const mySubmitButton = document.getElementById('submitButton');
 const myJokeList = document.getElementById('jokeList');
 const myMemeImage = document.getElementById('dadJokeMeme');
+const modeBox = document.getElementById('mode_box');
 let term = document.getElementById('search_term')
 let limit = document.getElementById('limit');
 
@@ -75,8 +76,45 @@ function handleNotEnoughJokes(total_jokes) {
 function clearForm(form) {
   form.reset();
   myJokeList.innerText = ""
-  mySubmitButton.innerText = "Get Dad Joke(s)" 
+  mySubmitButton.innerText = "Get Dad Joke(s)"
+  const mode = window.localStorage.getItem('mode');
+  if (mode && mode === 'dark') toggleDarkMode()
+  window.localStorage.removeItem(mode)
 }
+
+function toggleDarkMode() {
+  
+  if (modeBox.checked === true) {
+    document.documentElement.classList.remove("light")
+    document.documentElement.classList.add("dark")
+    window.localStorage.setItem('mode', 'dark');
+  } else {
+    document.documentElement.classList.remove("dark")
+    document.documentElement.classList.add("light")
+    window.localStorage.setItem('mode', 'light');
+  }
+
+  const mode = window.localStorage.getItem('mode');
+  if (mode && mode == 'dark') {if (modeBox.checked === true) {
+    document.documentElement.classList.remove("light")
+    document.documentElement.classList.add("dark")
+    window.localStorage.setItem('mode', 'dark');
+  } else {
+    document.documentElement.classList.remove("dark")
+    document.documentElement.classList.add("light")
+    window.localStorage.setItem('mode', 'light');
+  }
+    modeBox.checked = true;
+    document.documentElement.classList.remove("light")
+    document.documentElement.classList.add("dark")
+  }
+
+  if (mode && mode == 'light') {
+    modeBox.checked = false;
+    document.documentElement.classList.remove("dark")
+    document.documentElement.classList.add("light")
+  }
+} 
 /**
  * @param {string} text
  * @return {string}

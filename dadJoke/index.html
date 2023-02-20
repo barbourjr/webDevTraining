@@ -13,12 +13,12 @@
         <form id="jokeForm" onsubmit="return false">
           <h3>Menu</h3>
           <label for="limit">Quantity (between 1 and 4):</label><br>
-        
-          <input type="number" id="limit" name="limit" min="1" max="4" default="1"><br>
+          <input type="number" id="limit" name="limit" min="1" max="4" defaultValue="1" onKeyDown="return false"><br>
           <br>
           <label for="search_term"> Joke Search Term: </label><br>
           <input type="search" id="search_term" name="search_term" defaultValue="" placeholder="Enter search term here. "> <br>
-          
+          <label for="dark_mode"> Dark Mode: </label>
+          <input type="checkbox" id="mode_box" onchange="toggleDarkMode()"><br>
           <button id="submitButton" type="submit" onclick="getJokes()">Get Dad Joke(s)</button>
           <button id="resetButton" type="reset" onclick="clearForm(this.form)">Reset</button>
         </form>

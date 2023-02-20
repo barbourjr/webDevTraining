@@ -1,14 +1,27 @@
+:root,
+:root.light {
+	--color-bg: bisque;
+	--color-fg: #000000;
+}
+:root.dark {
+	--color-bg: #263238;
+	--color-fg: bisque;
+}
+
+
 body {
     overflow: hidden;
     height: 100vh;
-    background-color: bisque;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-bg);
+	color: var(--color-fg);
 }
 
 form {
     flex: 1 0 10%;
     width: 33vw;
 }
+
 .container {
     display: flex;
     column-count: 3;
