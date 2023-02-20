@@ -95,15 +95,7 @@ function toggleDarkMode() {
   }
 
   const mode = window.localStorage.getItem('mode');
-  if (mode && mode == 'dark') {if (modeBox.checked === true) {
-    document.documentElement.classList.remove("light")
-    document.documentElement.classList.add("dark")
-    window.localStorage.setItem('mode', 'dark');
-  } else {
-    document.documentElement.classList.remove("dark")
-    document.documentElement.classList.add("light")
-    window.localStorage.setItem('mode', 'light');
-  }
+  if (mode && mode == 'dark') {
     modeBox.checked = true;
     document.documentElement.classList.remove("light")
     document.documentElement.classList.add("dark")
