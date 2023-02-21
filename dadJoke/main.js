@@ -4,13 +4,16 @@ const mySubmitButton = document.getElementById('submitButton');
 const myJokeList = document.getElementById('jokeList');
 const myMemeImage = document.getElementById('dadJokeMeme');
 const modeBox = document.getElementById('mode_box');
+let listElements = document.querySelectorAll(".jokelist li");
 let term = document.getElementById('search_term')
 let limit = document.getElementById('limit');
 
 async function getJokes() {
 
   let url = new URL('https://icanhazdadjoke.com/search')
+  
   myJokeList.innerText = ""
+
   let myHeaders = new Headers();
 
   if (term !== "") url.searchParams.append('term', term.value);
@@ -26,28 +29,36 @@ async function getJokes() {
     if (response.ok) {
       let jokeStringArray = [];
       const data = await response.json();
-
       if (!data.results.length) {
         myJokeList.innerText = "No jokes found.";
         return;
       }
       data.results.forEach((entry) => {
         Object.entries(entry).forEach(([key, value]) => {
-
-          if (key === 'joke'){
+          console.log("key, value: ", [key, value])
+          /*if (key === 'joke'){
             let li = document.createElement("li");
             li.textContent = value
             jokeStringArray.push(value)
+          }*/
+          let card = document.createElement("li");
+          if (key === 'id') {
+            let id = document.createTextNode('Id: '+ value) 
+            card.append(id)
+          } else if (key === 'joke') {
+            let joke = document.createTextNode('Joke: '+ value) 
+            card.append(joke)
           }
+          myJokeList.appendChild(card);
         })
       })
-
+      /*
       jokeStringArray.forEach((entry) => {
         let li = document.createElement("li");
         li.textContent = entry
         myJokeList.appendChild(li);
       })
-      
+      */
       handleNotEnoughJokes(data.total_jokes);
       mySubmitButton.innerHTML = 'Get Another Dad Joke';
 

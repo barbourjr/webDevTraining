@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>Dad Joke Generator</h1>
-    <div class="container">
+    <div id=formContainer class="container">
         <form id="jokeForm" onsubmit="return false">
           <h3>Menu</h3>
           <label for="limit">Quantity (between 1 and 4):</label><br>
@@ -22,11 +22,11 @@
           <button id="submitButton" type="submit" onclick="getJokes()">Get Dad Joke(s)</button>
           <button id="resetButton" type="reset" onclick="clearForm(this.form)">Reset</button>
         </form>
-        <div class="jokeContainer">
-          <h3> Dad Jokes</h3>
+        <div id="jokeContainer" class="container">
+          <h3> Dad Jokes </h3>
           <ol type="1" id="jokeList"></ol>
         </div>
-        <div class="imgContainer">
+        <div id="imgContainer" class="container">
           <h3>Respect the Architects</h3>
           <img src="images/dadJokeMeme.png" id="dadJokeMeme" hidden="true" class="cover" alt="Funny dad joke meme featuring Leonardo DiCaprio">
         </div>

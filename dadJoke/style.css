@@ -8,7 +8,6 @@
 	--color-fg: bisque;
 }
 
-
 body {
     overflow: hidden;
     height: 100vh;
@@ -52,6 +51,10 @@ img {
 .jokeContainer{
     width: 34vw;
     justify-content: center;
+}
+
+.jokelist li {
+    border: 2px
 }
 
 .imgContainer {
