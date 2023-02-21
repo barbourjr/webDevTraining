@@ -45,7 +45,8 @@ async function getJokes() {
           if (key === 'id') {
             let id = document.createTextNode('Id: '+ value) 
             card.append(id)
-          } else if (key === 'joke') {
+          } 
+          if (key === 'joke') {
             let joke = document.createTextNode('Joke: '+ value) 
             card.append(joke)
           }
