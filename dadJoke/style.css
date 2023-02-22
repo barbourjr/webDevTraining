@@ -2,10 +2,12 @@
 :root.light {
 	--color-bg: bisque;
 	--color-fg: #000000;
+    --card-bg-color: #fafafa;
 }
 :root.dark {
 	--color-bg: #263238;
 	--color-fg: bisque;
+    --card-bg-color: #607d8b;
 }
 
 body {
@@ -16,16 +18,23 @@ body {
 	color: var(--color-fg);
 }
 
-form {
-    flex: 1 0 10%;
-    width: 33vw;
+.container {
+    border: 2px;
+    padding: 2px;
+    margin: 10px;
 }
 
-.container {
+#appContainer {
     display: flex;
-    column-count: 3;
-    column-gap: 20px;
-    column-rule: 1px solid black;
+    flex-direction: row;
+    gap: 5px;
+
+}
+
+#formContainer {
+    flex: 0 1 auto;
+    flex-shrink: 1;
+    width: 33vw;
 }
 
 button {
@@ -42,23 +51,29 @@ button {
 img {
     padding: 12px 12px;
     display: flex;
-    margin: 0 auto;
+    flex: 0 1 auto;
     object-fit: fill;
-    max-height: 80vh;
-    max-width: 80vw; 
+    max-height: 75vh;
+    max-width: 30vw; 
 }
 
-.jokeContainer{
+#jokeContainer{
+    flex: 1 0 auto;
     width: 34vw;
-    justify-content: center;
+    
 }
 
-.jokelist li {
-    border: 2px
-}
+ol li {
+    margin: 4px;
+    border: 1px solid;
+    padding: 8px;
+    border-radius: 12px;
+    justify-items: left;
+    background-color: var(--card-bg-color);
+}    
 
-.imgContainer {
+#imgContainer {
+    flex: 0 1 auto;
     width: 33vw;
-    justify-content: center;
 }
 

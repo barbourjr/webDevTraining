@@ -42,15 +42,12 @@ async function getJokes() {
             jokeStringArray.push(value)
           }*/
           let card = document.createElement("li");
-          if (key === 'id') {
-            let id = document.createTextNode('Id: '+ value) 
-            card.append(id)
-          } 
+
           if (key === 'joke') {
-            let joke = document.createTextNode('Joke: '+ value) 
+            let joke = document.createTextNode(value) 
             card.append(joke)
+            myJokeList.appendChild(card);
           }
-          myJokeList.appendChild(card);
         })
       })
       /*
