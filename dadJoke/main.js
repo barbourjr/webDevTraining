@@ -1,7 +1,7 @@
 //import validator from 'validator';
 
 const mySubmitButton = document.getElementById('submitButton');
-const myJokeList = document.getElementById('jokeList');
+const myCardContainer = document.getElementById('cardContainer');
 const myMemeImage = document.getElementById('dadJokeMeme');
 const modeBox = document.getElementById('mode_box');
 let listElements = document.querySelectorAll(".jokelist li");
@@ -12,7 +12,7 @@ async function getJokes() {
 
   let url = new URL('https://icanhazdadjoke.com/search')
   
-  myJokeList.innerText = ""
+  myCardContainer.innerText = ""
 
   let myHeaders = new Headers();
 
@@ -30,33 +30,22 @@ async function getJokes() {
       let jokeStringArray = [];
       const data = await response.json();
       if (!data.results.length) {
-        myJokeList.innerText = "No jokes found.";
+        myCardContainer.innerText = "No jokes found.";
         return;
       }
       data.results.forEach((entry) => {
         Object.entries(entry).forEach(([key, value]) => {
-          console.log("key, value: ", [key, value])
-          /*if (key === 'joke'){
-            let li = document.createElement("li");
-            li.textContent = value
-            jokeStringArray.push(value)
-          }*/
-          let card = document.createElement("li");
-
           if (key === 'joke') {
-            let joke = document.createTextNode(value) 
-            card.append(joke)
-            myJokeList.appendChild(card);
+            let card = buildCard()
+            let cardDetails = document.createElement("div");
+            cardDetails.classList.add('card__details')
+            cardDetails.innerText = value
+            card.appendChild(cardDetails)
+            myCardContainer.appendChild(card);
           }
         })
       })
-      /*
-      jokeStringArray.forEach((entry) => {
-        let li = document.createElement("li");
-        li.textContent = entry
-        myJokeList.appendChild(li);
-      })
-      */
+      
       handleNotEnoughJokes(data.total_jokes);
       mySubmitButton.innerHTML = 'Get Another Dad Joke';
 
@@ -76,15 +65,29 @@ function getRandomIntInclusive(min, max) {
 
 function handleNotEnoughJokes(total_jokes) {
   if (limit.value > total_jokes && term.value) {
-    let li = document.createElement("li");
-    li.textContent = "Sorry, we only have " + total_jokes + " jokes about " + term.value +"(s)."
-    myJokeList.appendChild(li);
+    let card = buildCard()
+    let cardDetails = document.createElement("div");
+    cardDetails.classList.add('card__details')
+    cardDetails.innerText = "Sorry, we only have " + total_jokes + " jokes about " + term.value +"(s)."
+    card.appendChild(cardDetails)
+    myCardContainer.appendChild(card);
   } 
+}
+
+function buildCard() {
+  let card = document.createElement("div");
+  card.classList.add("card")
+  let jokeImg = document.createElement("img");
+  jokeImg.classList.add('jokeImg');
+  jokeImg.src = "images/dadJokeLoading.jpg"
+  jokeImg.alt = 'Image of a Dad Joke Loading.';
+  card.appendChild(jokeImg)
+  return card;
 }
 
 function clearForm(form) {
   form.reset();
-  myJokeList.innerText = ""
+  myCardContainer.innerText = ""
   mySubmitButton.innerText = "Get Dad Joke(s)"
   const mode = window.localStorage.getItem('mode');
   if (mode && mode === 'dark') toggleDarkMode()

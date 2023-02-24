@@ -21,20 +21,20 @@ body {
 .container {
     border: 2px;
     padding: 2px;
-    margin: 10px;
+    margin: 5px;
 }
 
 #appContainer {
     display: flex;
     flex-direction: row;
     gap: 5px;
-
+    width: 100vw;
 }
 
 #formContainer {
     flex: 0 1 auto;
     flex-shrink: 1;
-    width: 33vw;
+    width: 15vw;
 }
 
 button {
@@ -48,7 +48,7 @@ button {
     cursor: pointer;
 }
 
-img {
+#dadJokeMeme {
     padding: 12px 12px;
     display: flex;
     flex: 0 1 auto;
@@ -58,22 +58,54 @@ img {
 }
 
 #jokeContainer{
-    flex: 1 0 auto;
-    width: 34vw;
-    
+    flex: 0 1 auto;
+    width: inherit;
 }
 
-ol li {
-    margin: 4px;
-    border: 1px solid;
-    padding: 8px;
-    border-radius: 12px;
-    justify-items: left;
+#cardContainer {
+    border-radius: .5em;
+    padding: 10px;
+    display: grid;
+    max-width: inherit;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}   
+
+.container>* {
+    padding: 10px;
+    border-radius: .5em;
+    margin: 0;
+}
+
+.card {
+    display: grid;
+    overflow-wrap: normal;
+    align-items: center;
+    
+    max-width: inherit;
+    grid-template-rows: auto 40px 1fr;
+    border-radius: 3px;
     background-color: var(--card-bg-color);
-}    
+}
+
+.card__details {
+    padding: 16px 8px 8px 8px;
+  }
+  
+
+.card img {
+    border: 2px;
+    padding: 2px;
+    margin: 5px;
+    border-radius: 12px;
+    height: 10vh;
+    width: 25vw;
+    object-fit: contain;
+}
 
 #imgContainer {
+    justify-content: center;
     flex: 0 1 auto;
-    width: 33vw;
+    width: 23vw;
 }
 
