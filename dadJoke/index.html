@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <base href="./">
     <link rel="icon" href="data:;base64,=">
     <meta charset="utf-8">
     <title>My Dad Joke Generator</title>
@@ -20,9 +21,9 @@
             <input type="search" id="search_term" name="search_term" defaultValue="" placeholder="Enter search term here. "><br>
             <br>
             <label for="dark_mode"> Dark Mode: </label>
-            <input type="checkbox" id="mode_box" onchange="toggleDarkMode()"><br>
-            <button id="submitButton" type="submit" onclick="getJokes()">Get Dad Joke(s)</button>
-            <button id="resetButton" type="reset" onclick="clearForm(this.form)">Reset</button>
+            <input type="checkbox" id="mode_box"><br>
+            <button id="submitButton" type="submit">Get Dad Joke(s)</button>
+            <button id="resetButton" type="reset">Reset</button>
           </form>
         </div>
         <div id="jokeContainer" class="container">
@@ -35,5 +36,5 @@
         </div>
       </div>
   </body>
-  <script src="main.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
 </html>
