@@ -1,6 +1,5 @@
-//import * as Utils from './Utils'
-import { ToggleDarkMode } from "./ToggleDarkMode.js";
-import { Utils } from "./Utils.js";
+import toggleDarkMode from "./ToggleDarkMode.js";
+import { buildCard } from "./Utils.js";
 
 const myResetButton = document.getElementById('resetButton');
 const mySubmitButton = document.getElementById('submitButton');
@@ -12,9 +11,9 @@ let limit = document.getElementById('limit');
 
 async function getJokes() {
 
-  let url = new URL('https://icanhazdadjoke.com/search')
+  let url = new URL('https://icanhazdadjoke.com/search');
   
-  myCardContainer.innerText = ""
+  myCardContainer.innerText = "";
 
   let myHeaders = new Headers();
 
@@ -37,11 +36,11 @@ async function getJokes() {
       data.results.forEach((entry) => {
         Object.entries(entry).forEach(([key, value]) => {
           if (key === 'joke') {
-            let card = Utils.buildCard()
+            let card = buildCard();
             let cardDetails = document.createElement("div");
-            cardDetails.classList.add('card__details')
-            cardDetails.innerText = value
-            card.appendChild(cardDetails)
+            cardDetails.classList.add('card__details');
+            cardDetails.innerText = value;
+            card.appendChild(cardDetails);
             myCardContainer.appendChild(card);
           }
         })
@@ -60,10 +59,10 @@ async function getJokes() {
 
 function handleNotEnoughJokes(total_jokes) {
   if ((limit.value > total_jokes) && term.value) {
-    let card = Utils.buildCard();
+    let card = buildCard();
     let cardDetails = document.createElement("div");
     cardDetails.classList.add('card__details');
-    cardDetails.innerText = "Sorry, we only have " + total_jokes + " jokes about " + term.value +"(s)."
+    cardDetails.innerText = "Sorry, we only have " + total_jokes + " jokes about " + term.value +"(s).";
     card.appendChild(cardDetails);
     myCardContainer.appendChild(card);
   } 
@@ -74,19 +73,19 @@ function clearForm(form) {
   myCardContainer.innerText = "";
   mySubmitButton.innerText = "Get Dad Joke(s)";
   const mode = window.localStorage.getItem('mode');
-  if (mode && mode === 'dark') ToggleDarkMode.toggleDarkMode(modeBox);
+  if (mode && mode === 'dark') toggleDarkMode(modeBox);
   window.localStorage.removeItem(mode);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   modeBox.addEventListener("change", function () {
-    ToggleDarkMode.toggleDarkMode(this);
+    toggleDarkMode(this);
   })
   mySubmitButton.addEventListener("click", function () {
     getJokes();
   })
   myResetButton.addEventListener("click", function () {
-    clearForm(form);
+    clearForm(this.form);
   })
 })
 
