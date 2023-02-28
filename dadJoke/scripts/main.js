@@ -1,5 +1,6 @@
 import toggleDarkMode from "./ToggleDarkMode.js";
-import { buildCard } from "./Utils.js";
+import fetchData from "./FetchData.js";
+import { buildCard, handleNotEnoughJokes } from "./Utils.js";
 
 const myResetButton = document.getElementById('resetButton');
 const mySubmitButton = document.getElementById('submitButton');
@@ -10,23 +11,8 @@ let term = document.getElementById('search_term')
 let limit = document.getElementById('limit');
 
 async function getJokes() {
-
-  let url = new URL('https://icanhazdadjoke.com/search');
-  
   myCardContainer.innerText = "";
-
-  let myHeaders = new Headers();
-
-  if (term !== "") url.searchParams.append('term', term.value);
-  if (limit !=="") url.searchParams.append('limit', limit.value ? limit.value : 1);
-  myHeaders.set('Accept', 'application/json');
-  const request = new Request(url, {
-    method: 'GET', 
-    headers: myHeaders,
-    mode: 'cors'
-  })
-   fetch(request)
-  .then(async (response) => {
+  fetchData(term, limit).then(async (response) => {
     if (response.ok) {
       const data = await response.json();
       if (!data.results.length) {
@@ -45,27 +31,17 @@ async function getJokes() {
           }
         })
       })
-      
-      handleNotEnoughJokes(data.total_jokes);
-      mySubmitButton.innerHTML = 'Get Another Dad Joke';
-
+      if ((limit.value > data.total_jokes) && term.value) {
+        let card = handleNotEnoughJokes(data.total_jokes, term.value);
+        myCardContainer.appendChild(card);
+        mySubmitButton.innerHTML = 'Get Another Dad Joke';
+      }
     } else {
       throw new Error('Something went wrong on API server!');
     }
   }).catch((error) => {
     console.error(error);
   });
-}
-
-function handleNotEnoughJokes(total_jokes) {
-  if ((limit.value > total_jokes) && term.value) {
-    let card = buildCard();
-    let cardDetails = document.createElement("div");
-    cardDetails.classList.add('card__details');
-    cardDetails.innerText = "Sorry, we only have " + total_jokes + " jokes about " + term.value +"(s).";
-    card.appendChild(cardDetails);
-    myCardContainer.appendChild(card);
-  } 
 }
 
 function clearForm(form) {
