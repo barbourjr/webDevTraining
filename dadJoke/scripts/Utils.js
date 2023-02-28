@@ -9,14 +9,12 @@ function buildCard() {
     return card;
 };
 function handleNotEnoughJokes(total_jokes, termValue) {
-    {
-      let card = buildCard();
-      let cardDetails = document.createElement("div");
-      cardDetails.classList.add('card__details');
-      cardDetails.innerText = "Sorry, we only have " + total_jokes + " jokes about " + termValue +"(s).";
-      card.appendChild(cardDetails);
-      return card;
-    } 
+    let card = buildCard();
+    let cardDetails = document.createElement("div");
+    cardDetails.classList.add('card__details');
+    cardDetails.innerText = "Sorry, we only have " + total_jokes + " jokes about " + termValue +"(s).";
+    card.appendChild(cardDetails);
+    return card;
   }
 export {
     buildCard,

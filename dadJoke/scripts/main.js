@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
   myResetButton.addEventListener("click", function () {
     clearForm(this.form);
   })
+  toggleDarkMode(modeBox)
 })
 
 
