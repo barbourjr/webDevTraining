@@ -1,0 +1,14 @@
+header {
+    color: lightblue;
+    background-color: darkkhaki;
+}
+
+li {
+    color: forestgreen;
+    background-color: cornsilk;
+}
+
+input {
+    color: rgb(61, 101, 231);
+    background-color: antiquewhite;
+}
