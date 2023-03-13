@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })
   toggleDarkMode(modeBox)
 })
+module.exports = getJokes()
 
 
 

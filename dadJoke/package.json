@@ -1,0 +1,29 @@
+{
+  "name": "dad-joke",
+  "version": "1.0.0",
+  "description": "Program that calls the Dad Joke API for laughs and groans.",
+  "main": "scripts/main.js",
+  "scripts": {
+    "fetch": "./fetchData.js",
+    "joke":  "live-server ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barbourjr/webDevTraining.git"
+  },
+  "keywords": [
+    "Dad",
+    "Joke",
+    "Funny",
+    "Laugh"
+  ],
+  "author": "James Barbour, Jr. \"barbourjr\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barbourjr/webDevTraining/issues"
+  },
+  "homepage": "https://github.com/barbourjr/webDevTraining#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.1"
+  }
+}
