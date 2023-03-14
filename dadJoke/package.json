@@ -5,7 +5,7 @@
   "main": "scripts/main.js",
   "type": "module",
   "scripts": {
-    "fetch": "./fetchData.js",
+    "fetch": "./scripts/fetchData.js",
     "joke":  "live-server ."
   },
   "repository": {
