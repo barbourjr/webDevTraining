@@ -1,10 +1,13 @@
 // import node-fetch
-//const fetch = import('node-fetch');
+import {fetch} from 'node-fetch';
 // set url as constant
 const URL = 'https://icanhazdadjoke.com/search';
 
-fetch(URL)
-.then((response) => response.text())
-.then((body) => {
-    console.log(body);
-}).catch(err => console.error(err));
+try {
+    const response = await fetch(URL)
+} catch (error) {
+    console.log("Error: ", error)
+}
+
+export default response.body ? response.body : 'Empty Response Body!'
+

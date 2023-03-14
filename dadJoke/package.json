@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Program that calls the Dad Joke API for laughs and groans.",
   "main": "scripts/main.js",
+  "type": "module",
   "scripts": {
     "fetch": "./fetchData.js",
     "joke":  "live-server ."

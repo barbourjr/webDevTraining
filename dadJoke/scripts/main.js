@@ -1,5 +1,5 @@
 import toggleDarkMode from "./ToggleDarkMode.js";
-import fetchData from "./FetchData.js";
+import fetchData from "./fetchData.js";
 import { buildCard, handleNotEnoughJokes } from "./Utils.js";
 
 const myResetButton = document.getElementById('resetButton');
