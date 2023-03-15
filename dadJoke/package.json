@@ -2,11 +2,11 @@
   "name": "dad-joke",
   "version": "1.0.0",
   "description": "Program that calls the Dad Joke API for laughs and groans.",
-  "main": "scripts/main.js",
+  "main": "scripts/fetchData.js",
   "type": "module",
   "scripts": {
     "fetch": "./scripts/fetchData.js",
-    "joke":  "live-server ."
+    "joke": "live-server ."
   },
   "repository": {
     "type": "git",

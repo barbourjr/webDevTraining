@@ -10,5 +10,5 @@ async function getData () {
     return response ? response.body : "Error"
 }
 
-export default getData()
+export default getData
 
