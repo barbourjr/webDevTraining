@@ -1,0 +1,19 @@
+@import "node_modules/ol/ol.css";
+
+html, body {
+  margin: 0;
+  width: 100%;
+}
+
+#map {
+  position: absolute;
+  height: 80vh;
+  width: 80vw;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black; 
+}
